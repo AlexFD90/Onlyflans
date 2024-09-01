@@ -1,0 +1,64 @@
+  <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <div class="container-fluid">
+       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'index_web' %}">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'about_web' %}">Acerca</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact_web' %}">Contacto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index_flan' %}">Flan</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'vegan_web' %}">Vegan</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'muffins_web' %}">Muffins</a>
+          </li> 
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'sucursal_web' %}">Sucursales</a>
+          </li> 
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'welcome_web' %}">Bienvenido</a>
+            </li>
+            {% if user.is_staff %}
+              
+            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle ps-5" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Crear producto
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'crearflan_flan' %}">Flan</a></li>
+                <li><a class="dropdown-item" href="{% url 'crearmuffin' %}">Muffin</a></li>
+              </ul>
+            </li>
+            {% endif %}  
+          {% endif %}                    
+        </ul>        
+      </div>
+      <div class="d-flex">
+        {% if user.is_authenticated %}
+        <p class="m-2"> Hola {{ user.get_username }}</p>
+        <form method="post" action="{% url 'logout' %}">
+          {% csrf_token %}
+          <button class="btn btn-primary" type="submit">logout</button>
+        </form>  
+        {% else %} 
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
+          <a class="btn btn-primary " href="{% url 'login' %}">Login</a>
+        </form>  
+        {% endif %}           
+      </div>
+    </div>
+  </nav>

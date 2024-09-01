@@ -1,0 +1,106 @@
+{% extends '../layouts/base.html'%} 
+
+{% block title %} 
+    Onlyflans|crear_flan
+{%endblock %} 
+
+{% block content %}
+
+<div class="container">
+    <div class="text-center">
+        <h1>Crear Flan</h1>
+    </div>
+  <div class="row">    
+    <div class="col-lg-7 mx-auto">
+        <div class="card mt-2 mx-auto p-4 bg-light">
+            <div  class="card-body bg-light">
+                <div class = "container">
+                    <form action="/flan/crearflan" method="post">
+                        {% csrf_token %} 
+                        {{ form.non_field_errors }}
+                        <div class="controls">
+                          <div class="row"><!-- name -->
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}" class="form-label">
+                                  {{ form.name.label_tag }}
+                                </label>
+                                <div>{{ form.name }}</div>
+                                <div class="text-danger">{{ form.name.errors }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-6"> <!-- shortname -->
+                              <div class="form-group">
+                                <label for="{{ form.short_name.id_for_label }}" class="form-label">
+                                  {{ form.short_name.label_tag }}
+                                </label>
+                                <div>{{ form.short_name }}</div>
+                                <div class="text-danger">{{ form.short_name.errors }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row"> <!-- image_url -->
+                            <div class="col-md-6">
+                              <div class="form-group ">
+                                <label for="{{ form.image_url.id_for_label }}" class="form-label">
+                                  {{ form.image_url.label_tag }}
+                                </label>  
+                                <div>{{ form.image_url }}</div>
+                                <div class="text-danger">{{ form.image_url.errors }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-3"><!-- description -->
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label
+                                  for="{{ form.description.id_for_label }}"
+                                  class="form-label"
+                                >
+                                  {{ form.description.label_tag }}
+                                </label>
+                                <div>{{ form.description }}</div>
+                                <div class="text-danger">{{ form.description.errors }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row mb-3 d-flex justify-content-center"><!-- is_private --><!-- vegan -->
+                            <div class="col-md-3">                                
+                              <div class="form-group">
+                                <label
+                                  for="{{ form.is_private.id_for_label }}"
+                                  class="form-label"
+                                >
+                                  {{ form.is_private.label_tag }}
+                                </label>
+                                <div>{{ form.is_private }}</div>
+                                <div class="text-danger">{{ form.is_private.errors }}</div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">                              
+                              <div class="form-group">
+                                <label for="{{ form.vegan.id_for_label }}" class="form-label">
+                                  {{ form.vegan.label_tag }}
+                                </label>
+                                <div>{{ form.vegan }}</div>
+                                <div class="text-danger">{{ form.vegan.errors }}</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12 text-center"> <!-- button_create -->
+                            <input type="submit" class="btn btn-primary me-5" value="Cargar" />
+                            <a href="{% url 'index_flan'%}" class="btn btn-secondary">Volver</a>
+                          </div>
+                        </div>
+                      </form>
+                </div>
+
+            </div>
+            
+        </div>
+      
+    </div>
+  </div>
+</div>
+  
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends '../layouts/base.html' %}
+
+{% block title %}
+    Onlyflans|Sucursales
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid ms-4 mt-5">
+    <h1>Sucursales</h1>
+</div>
+    <div class="container-fluid">
+        <div class="row justify-content-md-center">
+            {% for sucursal in sucursal %}
+                <div class="col-md-3">
+                    <div class="card m-4" style="width: 18rem;">
+                        <img src="{{ sucursal.image_address}}" class="card-img-top" alt="{{sucursal.name}}" style=" height: 12rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">{{sucursal.name}}</h5>
+                        <p class="card-text">{{sucursal.address}}</p>
+                        <a href="#" class="btn btn-primary">Hacer Pedido</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
